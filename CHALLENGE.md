@@ -86,7 +86,6 @@ Authentication and authorization live in their own Django service, deployed as i
 - **Login**: an endpoint that exchanges credentials for a token. Token format (JWT, opaque + introspection, session) is your call.
 - **Authorization**: at least two roles, e.g. `reader` and `editor`. The auth service is the source of truth for which user has which role/permission.
 - **Protected endpoint in the main app**: add one write endpoint, e.g. `PATCH /api/brands/<slug>/` to edit a brand's short description, that only `editor` can call. `GET /api/brands/` and the server-rendered pages stay public.
-- The main app must answer 401 for a missing or invalid token and 403 for a valid token without the permission.
 - Decide whether the main app verifies tokens locally or calls the auth service on every request, and document why.
 
 ### Pillar 6 — Shared Python library
